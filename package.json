@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "npx parcel src/index.html --open",
-    "build": "npx parcel build src/index.html"
+    "build": "npx parcel build src/index.html",
+    "format-code": "npx standard --fix"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
@@ -19,6 +20,7 @@
     "postcss": "^8.4.13",
     "process": "^0.11.10",
     "querystring-es3": "^0.2.1",
+    "standard": "^17.0.0",
     "stream-browserify": "^3.0.0",
     "tailwindcss": "^3.0.24",
     "url": "^0.11.0",
