@@ -1,0 +1,103 @@
+<!--
+    # To do
+
+    - Export playlists to JSON
+    - Create multiples playlists
+    - Styles
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anonymous youtube playlist generator</title>
+</head>
+<body>
+    <h1>Anonymous youtube playlist generator</h1>
+    <p>Create youtube playlists without a google account</p>
+    <hr>
+    <form id="add-video-form">
+        <label>
+            <div>Video URL *</div>
+            <input id="video-url-input" type="text" required>
+        </label>
+        <label>
+            <div>Video Name</div>
+            <input id="video-name-input" type="text">
+        </label>
+        <div>
+            <button id="add-video-button">Add</button>
+        </div>
+    </form>
+    <div id="generated-url-div"></div>
+    <ul id="playlist"></ul>
+
+    <script>
+        const $ = element => document.querySelector(element)
+        const $$ = element => document.querySelectorAll(element)
+        const baseURL = "http://www.youtube.com/watch_videos?video_ids="
+        let playList = JSON.parse(localStorage.getItem("playList")) || []
+
+        const setLocalStoragePlayList = () => {
+            localStorage.setItem("playList", JSON.stringify(playList))
+        }
+
+        const renderPlayList = () => {
+            const baseUrl = "https://www.youtube.com/watch?v="
+            const updatedPlayListString = playList.map(({url, name}) => `
+                <li>
+                    <a href="${baseUrl}${url}">${name || url}</a>
+                    <span class="remove-video" data-remove="${url}">X</span>
+                </li>
+            `).join("")
+
+            $("#playlist").innerHTML = updatedPlayListString
+            generateUrl()
+
+            $$(".remove-video").forEach(function(item){
+                item.addEventListener("click", function(){
+                    const elementDataId = item.getAttribute("data-remove")
+                    playList = [...playList].filter(item => item.url !== elementDataId)
+                    setLocalStoragePlayList()
+                    renderPlayList()
+                })
+            })
+        }
+
+        const getVideoID = (url) => url.split("v=")[1] 
+
+        const generateUrl = () => {
+            const containerElement = $("#generated-url-div")
+            containerElement.innerHTML = ""
+            if(playList.length){
+                const videosUrl = playList.map(item => getVideoID(item.url)).join()
+                const url = `${baseURL}${videosUrl}`
+                containerElement.innerHTML = `<a href="${url}" target="_blank">Go to playlist</a>`
+            }
+        }
+
+        const addVideo = () => {
+            const inputURLElement = $("#video-url-input")
+            const inputNameElement = $("#video-name-input")
+            const url = inputURLElement.value
+            const name = inputNameElement.value
+            
+            playList = [...playList, {url, name}]
+            setLocalStoragePlayList()
+            renderPlayList()
+            inputURLElement.value = ""
+            inputNameElement.value = ""
+        }
+
+        renderPlayList()
+
+        $("#add-video-form").addEventListener("submit", function(e){
+            e.preventDefault()
+            addVideo()
+            generateUrl()
+        })
+    </script>
+</body>
+</html>
