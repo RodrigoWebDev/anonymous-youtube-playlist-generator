@@ -5,6 +5,8 @@ import Swal from 'sweetalert2'
 
 import './main.css'
 import { css } from './cssClassComponents'
+import svgLogo from "./logo.svg"
+import timesIcon from "./times.svg"
 
 const html = htm.bind(h)
 const basePlayListURL = 'http://www.youtube.com/watch_videos?video_ids='
@@ -99,10 +101,13 @@ const App = () => {
 
   return html`
     <div class="p-4">
-      <h1>Anonymous youtube playlist generator</h1>
+      <div class="flex align-center mb-4">
+        <img class="w-20 mr-3" src=${svgLogo} alt="logo" />
+        <h1 class="font-medium leading-tight text-5xl">Anonymous youtube playlist generator</h1>
+      </div>
       <p class="mb-4">Create youtube playlists without a google account</p>
       <hr class="mb-4"/>
-
+      
       <div class="flex items-end mb-4">
         <a 
           class="${css.button} mr-2"
@@ -120,25 +125,29 @@ const App = () => {
         </button>
       </div>
 
-      <form onSubmit=${(e) => submit(e)}>
+      <h2 class="font-medium leading-tight text-4xl mb-4">Add videos to your playlist</h2>
+
+      <form onSubmit=${(e) => submit(e)} class="w-96">
         <label>
-          <div>Video URL *</div>
+          <div class=${css.inputLabel}>Video URL *</div>
           <input
             type="text"
+            class="${css.input} mb-4"
             value=${videoUrl}
             onChange=${(e) => handleChangeInput(e, setVideoUrl)}
-            required
           />
         </label>
+
         <label>
-          <div>Video Name</div>
+          <div class=${css.inputLabel}>Video Name</div>
           <input
             type="text"
+            class="${css.input} mb-4"
             value=${videoName}
-            onChange=${(e) => handleChangeInput(e, setVideoName)}
+            onChange=${(e) => handleChangeInput(e, setVideoUrl)}
           />
         </label>
-        <div>
+        <div class="mb-4">
           <button 
             type="submit"
             class=${css.button}
@@ -151,12 +160,14 @@ const App = () => {
           baseURL: basePlayListURL
         })}
       </div>
-      <ul id="playlist">
+      <ul class="w-1/2 mt-4">
         ${playList.map(({ url, name }) => (
           html`
             <li key=${url}>
-              <a target="_blank" href=${url}>${name || url}</a>
-              <button id="remove-video" onClick=${() => removeVideo(url)} data-remove="${url}">X</button>
+              <div class="${css.alert} flex justify-between" role="alert">
+                <a href=${url} target="_blank">${name || url}</a>
+                <img class="w-5 mr-3 opacity-50 cursor-pointer" src=${timesIcon} onClick=${() => removeVideo(url)} alt="Remove item" />
+              </div>
             </li>
           `
         ))}
