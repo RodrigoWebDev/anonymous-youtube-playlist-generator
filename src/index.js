@@ -144,7 +144,7 @@ const App = () => {
             type="text"
             class="${css.input} mb-4"
             value=${videoName}
-            onChange=${(e) => handleChangeInput(e, setVideoUrl)}
+            onChange=${(e) => handleChangeInput(e, setVideoName)}
           />
         </label>
         <div class="mb-4">
