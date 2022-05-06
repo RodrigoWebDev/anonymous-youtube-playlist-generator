@@ -102,8 +102,8 @@ const App = () => {
   return html`
     <div class="p-4">
       <div class="flex align-center mb-4">
-        <img class="w-20 mr-3" src=${svgLogo} alt="logo" />
-        <h1 class="font-medium leading-tight text-5xl">Anonymous youtube playlist generator</h1>
+        <img class="w-10 sm:w-20 mr-3" src=${svgLogo} alt="logo" />
+        <h1 class="font-medium leading-tight text-2xl sm:text-4xl lg:text-5xl leading-none">Anonymous youtube playlist generator</h1>
       </div>
       <p class="mb-4">Create youtube playlists without a google account</p>
       <hr class="mb-4"/>
@@ -125,9 +125,9 @@ const App = () => {
         </button>
       </div>
 
-      <h2 class="font-medium leading-tight text-4xl mb-4">Add videos to your playlist</h2>
+      <h2 class="font-medium leading-tight text-1xl sm:text-2xl lg:text-3xl mb-4">Add videos to your playlist</h2>
 
-      <form onSubmit=${(e) => submit(e)} class="w-96">
+      <form onSubmit=${(e) => submit(e)} class="max-w-sm">
         <label>
           <div class=${css.inputLabel}>Video URL *</div>
           <input
@@ -154,19 +154,30 @@ const App = () => {
           >Add video</button>
         </div>
       </form>
-      <div id="generated-url-div">
-        ${generatePlayListUrl({
-          playList,
-          baseURL: basePlayListURL
-        })}
-      </div>
-      <ul class="w-1/2 mt-4">
+
+      ${playList.length && html`
+        <div id="generated-url-div">
+          <a 
+            class=${css.outlineButton}
+            href=${
+              generatePlayListUrl({
+                playList,
+                baseURL: basePlayListURL
+              })
+            }
+            target="_blank"
+          >
+            Go to your playlist
+          </a>
+        </div>
+      `}
+      <ul class="max-w-2xl mt-4">
         ${playList.map(({ url, name }) => (
           html`
             <li key=${url}>
               <div class="${css.alert} flex justify-between" role="alert">
                 <a href=${url} target="_blank">${name || url}</a>
-                <img class="w-5 mr-3 opacity-50 cursor-pointer" src=${timesIcon} onClick=${() => removeVideo(url)} alt="Remove item" />
+                <img class="w-5 mr-3 opacity-50 cursor-pointer ml-2" src=${timesIcon} onClick=${() => removeVideo(url)} alt="Remove item" />
               </div>
             </li>
           `
