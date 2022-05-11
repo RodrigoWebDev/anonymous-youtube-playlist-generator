@@ -5,8 +5,8 @@ import Swal from 'sweetalert2'
 
 import './main.css'
 import { css } from './cssClassComponents'
-import svgLogo from "./logo.svg"
-import timesIcon from "./times.svg"
+import svgLogo from "./assets/icons/logo.svg"
+import timesIcon from "./assets/icons/times.svg"
 
 const html = htm.bind(h)
 const basePlayListURL = 'http://www.youtube.com/watch_videos?video_ids='
@@ -34,13 +34,33 @@ const App = () => {
     updatePlayList(filteredPlayList)
   }
 
-  const addVideo = () => {
-    updatePlayList([...playList, {
-      url: videoUrl,
-      name: videoName
-    }])
+  const isRepeatedUrl = (url) => playList.some(item => item.url === url)
+  
+  const showWarningPopup = (text) => {
+    Swal.fire({
+      title: `<strong>${text}</strong>`,
+      icon: 'warning',
+      showCloseButton: true,
+      focusConfirm: false,
+      confirmButtonText: "OK",
+    })
+  }
+
+  const resetInputs = () => {
     setVideoName('')
     setVideoUrl('')
+  }
+
+  const addVideo = () => {
+    if(isRepeatedUrl(videoUrl)){
+      showWarningPopup("URL already added")
+    }else{
+      updatePlayList([...playList, {
+        url: videoUrl,
+        name: videoName
+      }])
+    }
+    resetInputs()
   }
 
   const handleChangeInput = (e, setState) => {
