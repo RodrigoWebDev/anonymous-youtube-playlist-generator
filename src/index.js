@@ -54,7 +54,11 @@ const App = () => {
   const addVideo = () => {
     if(isRepeatedUrl(videoUrl)){
       showWarningPopup("URL already added")
-    }else{
+    }
+    else if(videoUrl === "") {
+      showWarningPopup("Video URL Cannot be empty!");
+    }
+    else{
       updatePlayList([...playList, {
         url: videoUrl,
         name: videoName
