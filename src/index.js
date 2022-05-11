@@ -175,7 +175,7 @@ const App = () => {
         </div>
       </form>
 
-      ${playList.length && html`
+      ${playList.length ? html`
         <div id="generated-url-div">
           <a 
             class=${css.outlineButton}
@@ -190,7 +190,7 @@ const App = () => {
             Go to your playlist
           </a>
         </div>
-      `}
+      ` : ``}
       <ul class="max-w-2xl mt-4">
         ${playList.map(({ url, name }) => (
           html`
