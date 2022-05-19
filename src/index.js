@@ -111,6 +111,36 @@ const App = () => {
     })
   }
 
+  const renderGoToYourPlaylistButton = () => 
+      playList.length > 0 && html`
+      <div id="generated-url-div">
+        <a 
+          class=${css.outlineButton}
+          href=${
+            generatePlayListUrl({
+              playList,
+              baseURL: basePlayListURL
+            })
+          }
+          target="_blank"
+        >
+          Go to your playlist
+        </a>
+      </div>`
+
+  const renderVideosList = () =>
+    playList.map(({ url, name }) => (
+      html`
+        <li key=${url}>
+          <div class="${css.alert} flex justify-between" role="alert">
+            <a href=${url} target="_blank">${name || url}</a>
+            <img class="w-5 mr-3 opacity-50 cursor-pointer ml-2" src=${timesIcon} onClick=${() => removeVideo(url)} alt="Remove item" />
+          </div>
+        </li>
+      `
+    ))
+          
+
   useEffect(() => {
     setPlayList(JSON.parse(getPlayListFromLocalStorage()) || [])
   }, [])
@@ -175,33 +205,9 @@ const App = () => {
         </div>
       </form>
 
-      ${playList.length && html`
-        <div id="generated-url-div">
-          <a 
-            class=${css.outlineButton}
-            href=${
-              generatePlayListUrl({
-                playList,
-                baseURL: basePlayListURL
-              })
-            }
-            target="_blank"
-          >
-            Go to your playlist
-          </a>
-        </div>
-      `}
+      ${renderGoToYourPlaylistButton()}
       <ul class="max-w-2xl mt-4">
-        ${playList.map(({ url, name }) => (
-          html`
-            <li key=${url}>
-              <div class="${css.alert} flex justify-between" role="alert">
-                <a href=${url} target="_blank">${name || url}</a>
-                <img class="w-5 mr-3 opacity-50 cursor-pointer ml-2" src=${timesIcon} onClick=${() => removeVideo(url)} alt="Remove item" />
-              </div>
-            </li>
-          `
-        ))}
+        ${renderVideosList()}
       </ul>
     </div>
 `
