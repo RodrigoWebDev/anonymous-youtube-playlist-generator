@@ -21,7 +21,10 @@ export const css = {
     active:shadow-lg 
     transition 
     duration-150 
-    ease-in-out`,
+    ease-in-out
+    flex-grow
+    text-center
+    mb-2`,
   outlineButton: `
     inline-block 
     px-6 
