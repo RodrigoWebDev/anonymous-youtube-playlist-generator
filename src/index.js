@@ -9,8 +9,8 @@ import svgLogo from "./assets/icons/logo.svg"
 import timesIcon from "./assets/icons/times.svg"
 
 const html = htm.bind(h)
+const baseYoutubeURL = "https://www.youtube.com/"
 const basePlayListURL = 'http://www.youtube.com/watch_videos?video_ids='
-// const baseVideoUrl = "https://www.youtube.com/watch?v="
 
 const App = () => {
   const [playList, setPlayList] = useState([])
@@ -37,7 +37,7 @@ const App = () => {
   const isRepeatedUrl = (url) => playList.some(item => item.url === url)
 
   const isYoutubeURL = (url) => 
-    url.includes("https://m.youtube.com") ||
+    url.includes(baseYoutubeURL) ||
     url.includes("https://www.youtube.com") ||
     url.includes("youtube.com")
   
@@ -91,7 +91,7 @@ const App = () => {
     return 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
   }
 
-  const uploadFile = () => {
+  const uploadJSON = () => {
     // Here I needed to do a little DOM manipulation because SWAL does not support HTM(don't confuse with HTML) elements
     const inputFile = document.getElementById("inputFile")
     const file = inputFile.files[0]
@@ -104,17 +104,48 @@ const App = () => {
     reader.readAsText(file)
   }
 
-  const openImportPopUp = () => {
+  const importByUrl = () => {
+    const inputValue = document.getElementById("inputUrl").value
+    const videosIDString = inputValue.split("=")[1]
+    const videosIDArray = videosIDString.split(",")
+    const playList = videosIDArray.map(item => ({
+      url: `${baseYoutubeURL}watch?v=${item}`,
+      name: ""
+    }))
+    setPlayList(playList)
+  }
+
+  const openPopup = ({
+    title,
+    html,
+    callBack
+  }) => {
     Swal.fire({
-      title: '<strong>Import playlist</strong>',
-      html: `<input id="inputFile" class="${css.inputFile}" type="file"/>`,
+      title,
+      html,
       showCloseButton: true,
       focusConfirm: false,
       confirmButtonText: "import",
     }).then(({isConfirmed}) => {
       if (isConfirmed) {
-        uploadFile()
+        callBack()
       }
+    })
+  }
+
+  const openImportJSONPopUp = () => {
+    openPopup({
+      title: '<strong>Import playlist</strong>',
+      html: `<input id="inputFile" class="${css.inputFile}" type="file"/>`,
+      callBack: () => uploadJSON()
+    })
+  }
+
+  const openImportURLPopUp = () => {
+    openPopup({
+      title: '<strong>Import playlist by URL</strong>',
+      html: `<input id="inputUrl" class="${css.input}" type="text"/>`,
+      callBack: () => importByUrl()
     })
   }
 
@@ -176,9 +207,16 @@ const App = () => {
 
         <button 
           class="${css.button} mr-2"
-          onClick=${() => openImportPopUp()}
+          onClick=${() => openImportJSONPopUp()}
         >
-          Import playlist
+          Import JSON playlist
+        </button>
+
+        <button 
+          class="${css.button} mr-2"
+          onClick=${() => openImportURLPopUp()}
+        >
+          Import URL playlist
         </button>
       </div>
 
