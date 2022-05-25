@@ -104,6 +104,10 @@ const App = () => {
     reader.readAsText(file)
   }
 
+  const clearPlaylist = () => {
+    updatePlayList([])
+}
+
   const importByUrl = () => {
     const inputValue = document.getElementById("inputUrl").value
     const videosIDString = inputValue.split("=")[1]
@@ -118,14 +122,15 @@ const App = () => {
   const openPopup = ({
     title,
     html,
-    callBack
+    callBack,
+    confirmButtonText
   }) => {
     Swal.fire({
       title,
       html,
       showCloseButton: true,
       focusConfirm: false,
-      confirmButtonText: "import",
+      confirmButtonText: confirmButtonText,
     }).then(({isConfirmed}) => {
       if (isConfirmed) {
         callBack()
@@ -137,6 +142,7 @@ const App = () => {
     openPopup({
       title: '<strong>Import playlist</strong>',
       html: `<input id="inputFile" class="${css.inputFile}" type="file"/>`,
+      confirmButtonText: "import",
       callBack: () => uploadJSON()
     })
   }
@@ -145,7 +151,17 @@ const App = () => {
     openPopup({
       title: '<strong>Import playlist by URL</strong>',
       html: `<input id="inputUrl" class="${css.input}" type="text"/>`,
+      confirmButtonText: "import",
       callBack: () => importByUrl()
+    })
+  }
+  
+  const openDeletePlaylistPopUp = () => {
+    openPopup({
+      title: '<strong>Delete playlist</strong>',
+      html: `Are you REALLY SURE?`,
+      confirmButtonText: "delete",
+      callBack: () => clearPlaylist()
     })
   }
 
@@ -164,6 +180,16 @@ const App = () => {
         >
           Go to your playlist
         </a>
+      </div>`
+
+  const renderDeletePlaylistButton = () => 
+      playList.length > 0 && html`
+      <div
+        class=${css.outlineButton}
+        id="generated-url-div"
+        onClick=${() => openDeletePlaylistPopUp()}
+      >
+        Delete playlist
       </div>`
 
   const renderVideosList = () =>
@@ -252,9 +278,12 @@ const App = () => {
       </form>
 
       ${renderGoToYourPlaylistButton()}
+
       <ul class="max-w-2xl mt-4">
         ${renderVideosList()}
       </ul>
+
+      ${renderDeletePlaylistButton()}
     </div>
 `
 }
