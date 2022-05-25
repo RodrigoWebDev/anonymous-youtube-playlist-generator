@@ -36,10 +36,10 @@ const App = () => {
 
   const isRepeatedUrl = (url) => playList.some(item => item.url === url)
 
-  const isAYoutubeURL = (url) => 
+  const isYoutubeURL = (url) => 
     url.includes("https://m.youtube.com") ||
     url.includes("https://www.youtube.com") ||
-    url.includes("youtube.com") 
+    url.includes("youtube.com")
   
   const showWarningPopup = (text) => {
     Swal.fire({
@@ -59,7 +59,7 @@ const App = () => {
   const addVideo = () => {
     if(isRepeatedUrl(videoUrl)){
       showWarningPopup("URL already added")
-    }else if(!isAYoutubeURL(videoUrl)){
+    }else if(!isYoutubeURL(videoUrl)){
       showWarningPopup("It should be a youtube URL")
     }else{
       updatePlayList([...playList, {
@@ -192,6 +192,7 @@ const App = () => {
             class="${css.input} mb-4"
             value=${videoUrl}
             onChange=${(e) => handleChangeInput(e, setVideoUrl)}
+            required
           />
         </label>
 
