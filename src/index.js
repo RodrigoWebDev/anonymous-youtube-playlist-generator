@@ -222,7 +222,7 @@ const App = () => {
       <p class="mb-4">Create youtube playlists without a google account</p>
       <hr class="mb-4"/>
       
-      <div class="flex items-end mb-4">
+      <div class="flex items-end flex-wrap mb-4 max-w-xs sm:max-w-xl">
         <a 
           class="${css.button} mr-2"
           download="anonymous-youtube-playlist.json"
