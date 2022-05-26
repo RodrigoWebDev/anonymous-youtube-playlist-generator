@@ -191,7 +191,7 @@ const App = () => {
         onClick=${() => openDeletePlaylistPopUp()}
       >
         <img class="w-5 opacity-50" src=${trashIcon} />
-        <span class="bg-red-600">Delete playlist</span>
+        Delete playlist
       </div>`
 
   const renderVideosList = () =>
