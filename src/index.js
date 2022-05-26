@@ -7,6 +7,7 @@ import './main.css'
 import { css } from './cssClassComponents'
 import svgLogo from "./assets/icons/logo.svg"
 import timesIcon from "./assets/icons/times.svg"
+import trashIcon from "./assets/icons/trashcan.svg"
 
 const html = htm.bind(h)
 const baseYoutubeURL = "https://www.youtube.com/"
@@ -185,10 +186,11 @@ const App = () => {
   const renderDeletePlaylistButton = () => 
       playList.length > 0 && html`
       <div
-        class=${css.outlineButton}
+        class="${css.button} cursor-pointer"
         id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}
       >
+        <img class="w-5 mr-3 opacity-50 ml-2" src=${trashIcon} />
         Delete playlist
       </div>`
 
