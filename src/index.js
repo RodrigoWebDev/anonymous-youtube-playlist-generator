@@ -5,12 +5,12 @@ import Swal from 'sweetalert2'
 
 import './main.css'
 import { css } from './cssClassComponents'
-import svgLogo from "./assets/icons/logo.svg"
-import timesIcon from "./assets/icons/times.svg"
-import trashIcon from "./assets/icons/trashcan.svg"
+import svgLogo from './assets/icons/logo.svg'
+import timesIcon from './assets/icons/times.svg'
+import trashIcon from './assets/icons/trashcan.svg'
 
 const html = htm.bind(h)
-const baseYoutubeURL = "https://www.youtube.com/"
+const baseYoutubeURL = 'https://www.youtube.com/'
 const basePlayListURL = 'http://www.youtube.com/watch_videos?video_ids='
 
 const App = () => {
@@ -20,8 +20,8 @@ const App = () => {
   const [exportHref, setExportHref] = useState('')
 
   const updatePlayList = (playList) => {
-      setPlayList(playList)
-      setLocalStoragePlayList(playList)
+    setPlayList(playList)
+    setLocalStoragePlayList(playList)
   }
 
   const getPlayListFromLocalStorage = () => window.localStorage.getItem('playList')
@@ -37,18 +37,18 @@ const App = () => {
 
   const isRepeatedUrl = (url) => playList.some(item => item.url === url)
 
-  const isYoutubeURL = (url) => 
+  const isYoutubeURL = (url) =>
     url.includes(baseYoutubeURL) ||
-    url.includes("https://www.youtube.com") ||
-    url.includes("youtube.com")
-  
+    url.includes('https://www.youtube.com') ||
+    url.includes('youtube.com')
+
   const showWarningPopup = (text) => {
     Swal.fire({
       title: `<strong>${text}</strong>`,
       icon: 'warning',
       showCloseButton: true,
       focusConfirm: false,
-      confirmButtonText: "OK",
+      confirmButtonText: 'OK'
     })
   }
 
@@ -58,11 +58,11 @@ const App = () => {
   }
 
   const addVideo = () => {
-    if(isRepeatedUrl(videoUrl)){
-      showWarningPopup("URL already added")
-    }else if(!isYoutubeURL(videoUrl)){
-      showWarningPopup("It should be a youtube URL")
-    }else{
+    if (isRepeatedUrl(videoUrl)) {
+      showWarningPopup('URL already added')
+    } else if (!isYoutubeURL(videoUrl)) {
+      showWarningPopup('It should be a youtube URL')
+    } else {
       updatePlayList([...playList, {
         url: videoUrl,
         name: videoName
@@ -94,12 +94,12 @@ const App = () => {
 
   const uploadJSON = () => {
     // Here I needed to do a little DOM manipulation because SWAL does not support HTM(don't confuse with HTML) elements
-    const inputFile = document.getElementById("inputFile")
+    const inputFile = document.getElementById('inputFile')
     const file = inputFile.files[0]
     const reader = new FileReader()
 
     reader.onload = (e) => {
-      console.log(e.target.result);
+      console.log(e.target.result)
       updatePlayList(JSON.parse(e.target.result))
     }
     reader.readAsText(file)
@@ -107,15 +107,15 @@ const App = () => {
 
   const clearPlaylist = () => {
     updatePlayList([])
-}
+  }
 
   const importByUrl = () => {
-    const inputValue = document.getElementById("inputUrl").value
-    const videosIDString = inputValue.split("=")[1]
-    const videosIDArray = videosIDString.split(",")
+    const inputValue = document.getElementById('inputUrl').value
+    const videosIDString = inputValue.split('=')[1]
+    const videosIDArray = videosIDString.split(',')
     const playList = videosIDArray.map(item => ({
       url: `${baseYoutubeURL}watch?v=${item}`,
-      name: ""
+      name: ''
     }))
     setPlayList(playList)
   }
@@ -131,8 +131,8 @@ const App = () => {
       html,
       showCloseButton: true,
       focusConfirm: false,
-      confirmButtonText: confirmButtonText,
-    }).then(({isConfirmed}) => {
+      confirmButtonText
+    }).then(({ isConfirmed }) => {
       if (isConfirmed) {
         callBack()
       }
@@ -143,7 +143,7 @@ const App = () => {
     openPopup({
       title: '<strong>Import playlist</strong>',
       html: `<input id="inputFile" class="${css.inputFile}" type="file"/>`,
-      confirmButtonText: "import",
+      confirmButtonText: 'import',
       callBack: () => uploadJSON()
     })
   }
@@ -152,22 +152,22 @@ const App = () => {
     openPopup({
       title: '<strong>Import playlist by URL</strong>',
       html: `<input id="inputUrl" class="${css.input}" type="text"/>`,
-      confirmButtonText: "import",
+      confirmButtonText: 'import',
       callBack: () => importByUrl()
     })
   }
-  
+
   const openDeletePlaylistPopUp = () => {
     openPopup({
       title: '<strong>Delete playlist</strong>',
-      html: `Are you REALLY SURE?`,
-      confirmButtonText: "delete",
+      html: 'Are you REALLY SURE?',
+      confirmButtonText: 'delete',
       callBack: () => clearPlaylist()
     })
   }
 
-  const renderGoToYourPlaylistButton = () => 
-      playList.length > 0 && html`
+  const renderGoToYourPlaylistButton = () =>
+    playList.length > 0 && html`
       <div id="generated-url-div">
         <a 
           class=${css.outlineButton}
@@ -183,15 +183,15 @@ const App = () => {
         </a>
       </div>`
 
-  const renderDeletePlaylistButton = () => 
-      playList.length > 0 && html`
+  const renderDeletePlaylistButton = () =>
+    playList.length > 0 && html`
       <div
-        class="${css.button} cursor-pointer"
+        class="${css.dangerButton} cursor-pointer"
         id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}
       >
-        <img class="w-5 mr-3 opacity-50 ml-2" src=${trashIcon} />
-        Delete playlist
+        <img class="w-5 opacity-50" src=${trashIcon} />
+        <span class="bg-red-600">Delete playlist</span>
       </div>`
 
   const renderVideosList = () =>
@@ -205,7 +205,6 @@ const App = () => {
         </li>
       `
     ))
-          
 
   useEffect(() => {
     setPlayList(JSON.parse(getPlayListFromLocalStorage()) || [])
