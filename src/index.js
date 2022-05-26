@@ -185,14 +185,14 @@ const App = () => {
 
   const renderDeletePlaylistButton = () =>
     playList.length > 0 && html`
-      <div
-        class="${css.dangerButton} cursor-pointer"
+      <button
+        class="${css.dangerButton} cursor-pointer flex items-center content-evenly"
         id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}
       >
-        <img class="w-5 opacity-50" src=${trashIcon} />
         Delete playlist
-      </div>`
+        <img style="margin-left:50px" class="ml-1 w-5 opacity-50" src=${trashIcon} />
+      </button>`
 
   const renderVideosList = () =>
     playList.map(({ url, name }) => (
