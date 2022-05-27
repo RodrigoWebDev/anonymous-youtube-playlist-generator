@@ -16,10 +16,8 @@ The APGfY (Anonymous Playlist Generator for Youtube) allows you to create a play
 
 ## Dev Dependencies  
 
-- PreactJS &nbsp;<img src="https://raw.githubusercontent.com/preactjs/preact/8b0bcc927995c188eca83cba30fbc83491cc0b2f/logo.svg?sanitize=true" title="PreactJS" alt="PreactJS" height="24" />
-- TailwindCSS &nbsp;<img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-plain.svg" title="TailwindCSS" alt="TailwindCSS" height="24"/>
-
-
+- <a href="https://preactjs.com/" target="_blank">PreactJS &nbsp;<img src="https://raw.githubusercontent.com/preactjs/preact/8b0bcc927995c188eca83cba30fbc83491cc0b2f/logo.svg?sanitize=true" title="PreactJS" alt="PreactJS" height="24" /></a>
+- <a href="https://tailwindcss.com/" target="_blank">TailwindCSS &nbsp;<img src="https://github.com/devicons/devicon/blob/master/icons/tailwindcss/tailwindcss-plain.svg" title="TailwindCSS" alt="TailwindCSS" height="24"/></a>
 
 ## Get started
 
