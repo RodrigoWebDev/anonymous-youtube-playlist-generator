@@ -8,7 +8,6 @@ export const css = {
     font-medium 
     text-xs 
     leading-tight 
-    uppercase 
     rounded 
     shadow-md 
     hover:bg-blue-700 
@@ -34,7 +33,6 @@ export const css = {
     font-medium
     text-xs
     leading-tight
-    uppercase
     rounded
     shadow-md
     hover:bg-red-700
@@ -58,7 +56,6 @@ export const css = {
     font-medium 
     text-xs 
     leading-tight 
-    uppercase 
     rounded 
     hover:bg-black 
     hover:bg-opacity-5 
