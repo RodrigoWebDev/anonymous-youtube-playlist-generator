@@ -27,3 +27,7 @@ Before contributing, please [read this](https://github.com/RodrigoWebDev/anonymo
 - **Run server**: `npm start`
 - **Build for production**: `npm run build`
 - **Format code**: `npm run format-code`
+
+## Chat with us on discord
+
+https://discord.gg/GKJzVTce
