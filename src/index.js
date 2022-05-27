@@ -190,8 +190,8 @@ const App = () => {
         id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}
       >
+        <img class="mr-2 w-5 opacity-50" src=${trashIcon} />
         Delete playlist
-        <img style="margin-left:50px" class="ml-1 w-5 opacity-50" src=${trashIcon} />
       </button>`
 
   const renderVideosList = () =>
