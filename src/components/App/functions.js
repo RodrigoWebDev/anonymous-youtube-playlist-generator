@@ -40,10 +40,7 @@ const useFunctions = ({
 
   const isRepeatedUrl = (url) => playList.some(item => item.url === url)
 
-  const isYoutubeURL = (url) =>
-    url.includes(baseYoutubeURL) ||
-    url.includes('https://www.youtube.com') ||
-    url.includes('youtube.com')
+  const isYoutubeURL = (url) => url.match(/^https:\/\/(www|m)\.youtube\.com\/watch\?v=.+/);
 
   const showWarningPopup = (text) => {
     openPopup({
@@ -62,7 +59,7 @@ const useFunctions = ({
     if (isRepeatedUrl(videoUrl)) {
       showWarningPopup('URL already added')
     } else if (!isYoutubeURL(videoUrl)) {
-      showWarningPopup('It should be a youtube URL')
+      showWarningPopup('Invalid youtube URL')
     } else {
       updatePlayList([...playList, {
         url: videoUrl,
