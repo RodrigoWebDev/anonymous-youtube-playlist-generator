@@ -93,12 +93,12 @@ const useFunctions = ({
   const uploadJSON = () => {
     // Here I needed to do a little DOM manipulation because SWAL does not support HTM(don't confuse with HTML) elements
     const inputFile = document.getElementById('inputFile')
+    //@ts-ignore
     const file = inputFile.files[0]
     const reader = new FileReader()
 
-    reader.onload = (e) => {
-      console.log(e.target.result)
-      updatePlayList(JSON.parse(e.target.result))
+    reader.onload = ({target: {result}}) => {
+      updatePlayList(JSON.parse(result))
     }
     reader.readAsText(file)
   }

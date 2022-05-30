@@ -1,6 +1,20 @@
 import Swal from 'sweetalert2'
 import { dangerColor, primaryColor } from './colors'
 
+interface SwalTypes{
+  title: string;
+  html?: string;
+  showCloseButton?: boolean;
+  focusConfirm?: boolean;
+  confirmButtonText?: string;
+  cancelButtonText?: string;
+  confirmButtonColor?: string;
+  cancelButtonColor?: string;
+  icon?: string;
+  confirmCallback?: () => void;
+  deniedCallback?: () => void;
+}
+
 const openPopup = ({
   title,
   html,
@@ -13,7 +27,8 @@ const openPopup = ({
   icon = "",
   confirmCallback = () => {},
   deniedCallback = () => {},
-}) => {
+}: SwalTypes) => {
+  //@ts-ignore
   Swal.fire({
     title,
     html,

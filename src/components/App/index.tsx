@@ -1,12 +1,10 @@
 import { h } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import htm from 'htm'
-
 import useFunctions from "./functions"
-
+import Logo from "../Icons/Logo"
 // Assets
 import { css } from '../../utils/cssClasses'
-import svgLogo from '../../assets/icons/logo.svg'
 
 const html = htm.bind(h)
 
@@ -40,13 +38,13 @@ const App = () => {
   }, [])
 
   useEffect(() => {
-    setExportHref(getExportHrefValue(playList))
+    setExportHref(getExportHrefValue())
   }, [playList])
 
   return html`
     <div class="p-4">
       <div class="flex align-center mb-4">
-        <img class="w-10 sm:w-20 mr-3 object-contain" src=${svgLogo} alt="logo" />
+        <${Logo} />
         <h1 class="font-medium leading-tight text-2xl sm:text-4xl lg:text-5xl leading-none">Anonymous youtube playlist generator</h1>
       </div>
       <p class="mb-4">Create youtube playlists without a google account</p>
