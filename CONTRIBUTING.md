@@ -1,9 +1,4 @@
-## To developers
-
-If you want to solve an issue, first:
-- Read the [style guide](https://github.com/RodrigoWebDev/anonymous-youtube-playlist-generator/wiki/Style-Guide)
-- Before push your branch, run the `npm run format-code` (In the future this will be not necessary, see [this issue](https://github.com/RodrigoWebDev/anonymous-youtube-playlist-generator/issues/30) for more information)
-- When open a PR, [link it in the issue](https://docs.github.com/en/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue)
-- Join us on [Discord](https://discord.gg/GKJzVTce) for any questions or suggestions
+- [Read this before open a Pull Request](https://github.com/RodrigoWebDev/anonymous-youtube-playlist-generator/wiki/Read-this-before-open-a-Pull-Request)
+- [Read this before open an Issue](https://github.com/RodrigoWebDev/anonymous-youtube-playlist-generator/wiki/Read-this-before-open-an-Issue)
 
 Thank you for contributing! 
