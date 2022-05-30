@@ -21,7 +21,7 @@ The APGfY (Anonymous Playlist Generator for Youtube) allows you to create a play
 
 ## Get started
 
-Before contributing, please [read this](https://github.com/RodrigoWebDev/anonymous-youtube-playlist-generator/blob/master/CONTRIBUTING.md).
+Before contributing, please read the [contribution guide](https://github.com/RodrigoWebDev/anonymous-youtube-playlist-generator/blob/master/CONTRIBUTING.md).
 
 - **Install dependecies**: `npm install`
 - **Run server**: `npm start`
