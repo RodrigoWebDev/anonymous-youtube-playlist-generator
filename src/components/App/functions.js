@@ -40,7 +40,7 @@ const useFunctions = ({
 
   const isRepeatedUrl = (url) => playList.some(item => item.url === url)
 
-  const isYoutubeURL = (url) => url.match(/^https:\/\/(www|m)\.youtube\.com\/watch\?v=.+/);
+  const isYoutubeURL = (url) => url.match(/^https:\/\/(www|m)\.youtube\.com\/watch\?v=.+/)
 
   const showWarningPopup = (text) => {
     openPopup({

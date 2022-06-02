@@ -38,6 +38,8 @@ const App = () => {
     setVideoUrl
   })
 
+  const getButtonStyle = () => colorTheme === 'light' ? css.button : css.outlineButton
+
   useEffect(() => {
     setPlayList(JSON.parse(getPlayListFromLocalStorage()) || [])
   }, [])
@@ -54,7 +56,7 @@ const App = () => {
   }, [colorTheme])
 
   return html`
-    <div class="p-4 dark:bg-[#18181b] h-screen transition duration-500">
+    <div class="p-4 dark:bg-[#18181b] min-h-screen transition duration-500">
       <div class="flex align-center mb-4">
         <img class="w-10 sm:w-20 mr-3 object-contain" src=${svgLogo} alt="logo" />
         <h1 class="font-medium leading-tight text-2xl sm:text-4xl lg:text-5xl leading-none dark:text-slate-300">Anonymous youtube playlist generator</h1>
@@ -70,7 +72,7 @@ const App = () => {
       
       <div class="flex items-end flex-wrap mb-4 max-w-xs sm:max-w-xl">
         <a 
-          class="${colorTheme === 'light' ? css.button : css.outlineButton} mr-2"
+          class="${getButtonStyle()} mr-2"
           download="anonymous-youtube-playlist.json"
           href=${exportHref}
         >
@@ -78,14 +80,14 @@ const App = () => {
         </a>
 
         <button 
-          class="${colorTheme === 'light' ? css.button : css.outlineButton} mr-2"
+          class="${getButtonStyle()} mr-2"
           onClick=${() => openImportJSONPopUp()}
         >
           Import JSON playlist
         </button>
 
         <button 
-          class="${colorTheme === 'light' ? css.button : css.outlineButton} mr-2"
+          class="${getButtonStyle()} mr-2"
           onClick=${() => openImportURLPopUp()}
         >
           Import URL playlist
@@ -118,7 +120,7 @@ const App = () => {
         <div class="mb-4">
           <button 
             type="submit"
-            class=${colorTheme === 'light' ? css.button : css.outlineButton}
+            class=${getButtonStyle()}
           >Add video</button>
         </div>
       </form>
