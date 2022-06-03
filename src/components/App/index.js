@@ -66,7 +66,7 @@ const App = () => {
 
       <div class="fixed bottom-0 right-0 p-5">
         <span onClick=${() => setColorTheme(oldColorTheme => oldColorTheme === 'dark' ? 'light' : 'dark')} class="w-10 h-10 bg-primary-color block rounded-full shadow-lg cursor-pointer text-white flex items-center justify-center transition duration-500">
-          <${colorTheme === 'light' ? light : dark} customClass="h-6 pr-[0.2rem]" width="full" fill="white" />
+          <${colorTheme === 'light' ? dark : light} customClass="h-6 pr-[0.2rem]" width="full" fill="white" />
         </span>
       </div>
       
