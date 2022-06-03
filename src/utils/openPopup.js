@@ -4,15 +4,15 @@ import { dangerColor, primaryColor } from './colors'
 const openPopup = ({
   title,
   html,
-  confirmButtonText = "Ok",
-  cancelButtonText = "Cancel",
+  confirmButtonText = 'Ok',
+  cancelButtonText = 'Cancel',
   confirmButtonColor = primaryColor,
   cancelButtonColor = dangerColor,
   showCloseButton = true,
   focusConfirm = false,
-  icon = "",
+  icon = '',
   confirmCallback = () => {},
-  deniedCallback = () => {},
+  deniedCallback = () => {}
 }) => {
   Swal.fire({
     title,
@@ -27,7 +27,7 @@ const openPopup = ({
   }).then(({ isConfirmed, isDenied }) => {
     if (isConfirmed) {
       confirmCallback()
-    }else if (isDenied){
+    } else if (isDenied) {
       deniedCallback()
     }
   })

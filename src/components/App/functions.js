@@ -7,19 +7,19 @@ import { dangerColor } from '../../utils/colors'
 import { css } from '../../utils/cssClasses'
 
 // Components
-import TrashCan from "../Icons/TrashCan"
-import Times from "../Icons/Times"
+import TrashCan from '../Icons/TrashCan'
+import Times from '../Icons/Times'
 
 const html = htm.bind(h)
 const baseYoutubeURL = 'https://www.youtube.com/'
 const basePlayListURL = 'http://www.youtube.com/watch_videos?video_ids='
 
 const useFunctions = ({
-  playList, 
-  setPlayList, 
-  videoName, 
-  setVideoName, 
-  videoUrl, 
+  playList,
+  setPlayList,
+  videoName,
+  setVideoName,
+  videoUrl,
   setVideoUrl
 }) => {
   const setLocalStoragePlayList = (newPlayList) => {
@@ -40,7 +40,7 @@ const useFunctions = ({
 
   const isRepeatedUrl = (url) => playList.some(item => item.url === url)
 
-  const isYoutubeURL = (url) => url.match(/^https:\/\/(www|m)\.youtube\.com\/watch\?v=.+/);
+  const isYoutubeURL = (url) => url.match(/^https:\/\/(www|m)\.youtube\.com\/watch\?v=.+/)
 
   const showWarningPopup = (text) => {
     openPopup({
@@ -163,15 +163,15 @@ const useFunctions = ({
         </a>
       </div>`
 
-  const renderDeletePlaylistButton = () =>
+  const renderDeletePlaylistButton = (colorTheme) =>
     playList.length > 0 && html`
       <button
-        class="${css.dangerButton} cursor-pointer flex items-center content-evenly"
+        class="${colorTheme === 'light' ? `${css.dangerButton} fill-white` : `${css.outlineDangerButton} fill-red-600 hover:fill-white`} cursor-pointer flex items-center content-evenly"
         id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}
       >
           <!-- TO DO - w-3 and fill-white class neet do be inside the component -->
-        <${TrashCan} customClass="w-3 fill-white mr-2" />
+        <${TrashCan} customClass="w-3 mr-2" fill="inherit" />
         Delete playlist
       </button>`
 
@@ -183,7 +183,7 @@ const useFunctions = ({
             <a href=${url} target="_blank">${name || url}</a>
             <!-- TO DO - w-3 class neet do be inside the component -->
             <${Times}
-              customClass="w-3 mr-3 opacity-50 cursor-pointer ml-2" 
+              customClass="w-3 mr-3 opacity-50 cursor-pointer ml-2 dark:fill-white" 
               fill="black"
               onClick=${() => {
                 removeVideo(url)

@@ -1,11 +1,11 @@
 import { h } from 'preact'
 import htm from 'htm'
 
-import Svg from "./Svg"
+import Svg from './Svg'
 
 const html = htm.bind(h)
 
-const TrashCan = ({customClass, fill, width, onClick}) => html`
+const TrashCan = ({ customClass, fill, width, onClick }) => html`
   <${Svg} 
     customClass=${customClass} 
     fill=${fill} 

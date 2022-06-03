@@ -58,7 +58,30 @@ export const css = {
     leading-tight 
     rounded 
     hover:bg-black 
+    dark:hover:bg-blue-600 
+    dark:hover:text-white 
     hover:bg-opacity-5 
+    focus:outline-none 
+    focus:ring-0 
+    transition 
+    duration-150 
+    ease-in-out`,
+  outlineDangerButton: `
+    inline-block 
+    px-6 
+    py-2 
+    border-2 
+    border-red-600 
+    text-red-600 
+    font-medium 
+    text-xs 
+    leading-tight 
+    uppercase 
+    rounded 
+    hover:bg-black 
+    hover:bg-opacity-5 
+    dark:hover:bg-red-600
+    dark:hover:text-white 
     focus:outline-none 
     focus:ring-0 
     transition 
@@ -96,6 +119,7 @@ export const css = {
     inline-block 
     mb-2 
     text-gray-700
+    dark:text-slate-300
   `,
   input: `
     form-control
@@ -116,6 +140,8 @@ export const css = {
     focus:bg-white 
     focus:border-blue-600 
     focus:outline-none
+    dark:bg-transparent
+    dark:text-slate-300
   `,
   alert: `
     bg-blue-100 
@@ -126,5 +152,9 @@ export const css = {
     text-base 
     text-blue-700 
     mb-3
+    dark:bg-transparent
+    dark:border
+    dark:border-solid
+    dark:border-blue-600
   `
 }
