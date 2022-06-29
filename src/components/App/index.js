@@ -17,7 +17,7 @@ const App = () => {
   const [videoName, setVideoName] = useState('')
   const [videoUrl, setVideoUrl] = useState('')
   const [exportHref, setExportHref] = useState('')
-  const [colorTheme, setColorTheme] = useState(localStorage.theme)
+  const [colorTheme, setColorTheme] = useState(localStorage.theme === "undefined" && "light")
 
   const {
     getPlayListFromLocalStorage,
@@ -50,6 +50,7 @@ const App = () => {
 
   useEffect(() => {
     const root = window.document.documentElement
+    console.log(colorTheme)
     root.classList.remove(colorTheme === 'dark' ? 'light' : 'dark')
     root.classList.add(colorTheme)
     localStorage.setItem('theme', colorTheme)

@@ -5,9 +5,9 @@
   "author": "Rodrigo Queiroz <rodrigo.queiroz.chagas@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npx parcel src/index.html --open",
-    "build": "npx parcel build src/index.html",
-    "format-code": "npx standard --fix"
+    "start": "parcel src/index.html --open",
+    "build": "parcel build src/index.html",
+    "format-code": "standard --fix"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
