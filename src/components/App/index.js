@@ -115,9 +115,8 @@ const App = () => {
   }, [colorTheme])
 
   return html`
-    <div class="p-4 dark:bg-[#18181b] min-h-screen transition duration-500">
-      <${Header} />
-
+    <${Header} />
+    <div class="p-4 dark:bg-[#18181b] min-h-screen transition duration-500 md:px-52 md:mx-auto">
       <${ButtonsGroup} 
         colorTheme=${colorTheme} 
         getButtonStyle=${() => getButtonStyle()}

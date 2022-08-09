@@ -1,92 +1,62 @@
+const baseButton = `
+  inline-block 
+  px-6 
+  py-2.5 
+  text-white 
+  font-medium 
+  text-xs 
+  leading-tight 
+  rounded 
+  shadow-md  
+  hover:shadow-lg 
+  focus:shadow-lg 
+  focus:outline-none 
+  focus:ring-0 
+  active:shadow-lg 
+  transition 
+  duration-150 
+  ease-in-out
+  flex-grow
+  text-center
+  mb-2
+`
+
+const baseOutlineButton = `
+  ${baseButton}
+  border-2
+  shadow-none
+  focus:outline-none 
+  focus:ring-0
+  dark:hover:text-white 
+  hover:bg-opacity-5
+`
+
 export const css = {
   button: `
-    inline-block 
-    px-6 
-    py-2.5 
-    bg-blue-600 
-    text-white 
-    font-medium 
-    text-xs 
-    leading-tight 
-    rounded 
-    shadow-md 
+    ${baseButton}
+    bg-blue-600
     hover:bg-blue-700 
-    hover:shadow-lg 
-    focus:bg-blue-700 
-    focus:shadow-lg 
-    focus:outline-none 
-    focus:ring-0 
+    focus:bg-blue-700
     active:bg-blue-800 
-    active:shadow-lg 
-    transition 
-    duration-150 
-    ease-in-out
-    flex-grow
-    text-center
-    mb-2`,
+  `,
   dangerButton: `
-    inline-block
-    px-6
-    py-2.5
+    ${baseButton}
     bg-red-600
-    text-white
-    font-medium
-    text-xs
-    leading-tight
-    rounded
-    shadow-md
-    hover:bg-red-700
-    hover:shadow-lg
-    focus:bg-red-700
-    focus:shadow-lg
-    focus:outline-none
-    focus:ring-0
     active:bg-red-800
-    active:shadow-lg
-    transition
-    duration-150
-    ease-in-out`,
+    focus:bg-red-700
+    hover:bg-red-700`,
   outlineButton: `
-    inline-block 
-    px-6 
-    py-2 
-    border-2 
-    border-blue-600 
-    text-blue-600 
-    font-medium 
-    text-xs 
-    leading-tight 
-    rounded 
-    hover:bg-black 
-    dark:hover:bg-blue-600 
-    dark:hover:text-white 
-    hover:bg-opacity-5 
-    focus:outline-none 
-    focus:ring-0 
-    transition 
-    duration-150 
-    ease-in-out`,
+    ${baseOutlineButton}
+    border-blue-600
+    dark:hover:bg-blue-600
+    text-blue-600
+  `,
   outlineDangerButton: `
-    inline-block 
-    px-6 
-    py-2 
-    border-2 
-    border-red-600 
-    text-red-600 
-    font-medium 
-    text-xs 
-    leading-tight 
-    uppercase 
-    rounded 
-    hover:bg-black 
-    hover:bg-opacity-5 
+    ${baseOutlineButton}
     dark:hover:bg-red-600
-    dark:hover:text-white 
-    focus:outline-none 
-    focus:ring-0 
-    transition 
-    duration-150 
-    ease-in-out`,
+    text-red-600 
+    border-red-600
+  `,
   label: `
     form-label 
     inline-block 
