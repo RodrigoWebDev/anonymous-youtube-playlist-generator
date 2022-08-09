@@ -4,10 +4,11 @@ import { css } from '../utils/cssClasses'
 import Times from '../components/Icons/Times'
 import { dangerColor } from '../utils/colors'
 import TrashCan from '../components/Icons/TrashCan'
+import Button from "../components/Button"
 
 const html = htm.bind(h)
 
-const VideosList = ({ playList, updatePlayList, colorTheme, openPopup }) => {
+const VideosList = ({ playList, updatePlayList, openPopup }) => {
   const removeVideo = (url) => {
     const filteredPlayList = playList.filter(item => item.url !== url)
     updatePlayList(filteredPlayList)
@@ -49,15 +50,24 @@ const VideosList = ({ playList, updatePlayList, colorTheme, openPopup }) => {
     </ul>
 
     ${playList.length > 0 && html`
-      <button
+      <!-- <button
         class="${colorTheme === 'light' ? `${css.dangerButton} fill-white` : `${css.outlineDangerButton} fill-red-600 hover:fill-white`} cursor-pointer flex items-center content-evenly"
         id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}
       >
-          <!-- TO DO - w-3 and fill-white class neet do be inside the component -->
+          TO DO - w-3 and fill-white class neet do be inside the component
         <${TrashCan} customClass="w-3 mr-2" fill="inherit" />
         Delete playlist
-      </button>
+      </button> -->
+
+      <${Button}
+        customClass="fill-white cursor-pointer flex items-center content-evenly"
+        id="generated-url-div"
+        onClick=${() => openDeletePlaylistPopUp()}   
+      >
+        <${TrashCan} customClass="w-3 mr-2" fill="inherit" />
+        Delete playlist
+      <//>
     `}
   `
 }

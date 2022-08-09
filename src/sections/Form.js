@@ -1,12 +1,12 @@
 import { h } from 'preact'
 import htm from 'htm'
 import { css } from '../utils/cssClasses'
+import Button from "../components/Button"
 
 const html = htm.bind(h)
 
 const Form = ({
   handleChangeInput,
-  getButtonStyle,
   submit,
   videoUrl,
   videoName,
@@ -38,10 +38,11 @@ const Form = ({
         />
       </label>
       <div class="mb-4">
-        <button 
+        <${Button} 
           type="submit"
-          class=${getButtonStyle()}
-        >Add video</button>
+        >
+          Add video
+        <//>
       </div>
     </form>
 `

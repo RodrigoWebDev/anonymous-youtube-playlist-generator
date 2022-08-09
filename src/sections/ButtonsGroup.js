@@ -1,12 +1,13 @@
 import { h } from 'preact'
 import htm from 'htm'
 import { css } from '../utils/cssClasses'
+import Button from "../components/Button"
 
 const html = htm.bind(h)
 const baseYoutubeURL = 'https://www.youtube.com/'
 const modalWarningMessage = '<p class="mb-4"><strong>Warning!</strong> This process will overwrite yout actual playlist</p>'
 
-const ButtonsGroup = ({ getButtonStyle, exportHref, openPopup, setPlayList }) => {
+const ButtonsGroup = ({ exportHref, openPopup, setPlayList }) => {
   const importByUrl = () => {
     const inputValue = document.getElementById('inputUrl').value
     const videosIDString = inputValue.split('=')[1]
@@ -58,27 +59,27 @@ const ButtonsGroup = ({ getButtonStyle, exportHref, openPopup, setPlayList }) =>
 
   return html`
     <div class="flex items-end flex-wrap mb-4 max-w-xs sm:max-w-xl">
-      <a 
-        class="${getButtonStyle()} mr-2"
+      <${Button} 
+        customClass="mr-2"
         download="anonymous-youtube-playlist.json"
         href=${exportHref}
       >
         Export playlist
-      </a>
+      <//>
 
-      <button 
-        class="${getButtonStyle()} mr-2"
+      <${Button} 
+        customClass="mr-2"
         onClick=${() => openImportJSONPopUp()}
       >
         Import JSON playlist
-      </button>
+      <//>
 
-      <button 
-        class="${getButtonStyle()} mr-2"
+      <${Button} 
+        customClass="mr-2"
         onClick=${() => openImportURLPopUp()}
       >
         Import URL playlist
-      </button>
+      <//>
     </div>
   `
 }

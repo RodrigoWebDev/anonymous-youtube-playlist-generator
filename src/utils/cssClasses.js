@@ -57,11 +57,6 @@ export const css = {
     text-red-600 
     border-red-600
   `,
-  label: `
-    form-label 
-    inline-block 
-    mb-2 
-    text-gray-700`,
   inputFile: `
     form-control 
     inline-block 
