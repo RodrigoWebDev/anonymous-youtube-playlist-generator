@@ -1,11 +1,12 @@
 import { h } from 'preact'
 import htm from 'htm'
-import {css} from "../utils/cssClasses"
+import { css } from '../utils/cssClasses'
 
 const html = htm.bind(h)
 const baseYoutubeURL = 'https://www.youtube.com/'
+const modalWarningMessage = '<p class="mb-4"><strong>Warning!</strong> This process will overwrite yout actual playlist</p>'
 
-const ButtonsGroup = ({getButtonStyle, exportHref}) => {
+const ButtonsGroup = ({ getButtonStyle, exportHref, openPopup, setPlayList }) => {
   const importByUrl = () => {
     const inputValue = document.getElementById('inputUrl').value
     const videosIDString = inputValue.split('=')[1]
@@ -20,7 +21,10 @@ const ButtonsGroup = ({getButtonStyle, exportHref}) => {
   const openImportURLPopUp = () => {
     openPopup({
       title: '<strong>Import playlist by URL</strong>',
-      html: `<input id="inputUrl" class="${css.input}" type="text"/>`,
+      html: `
+        ${modalWarningMessage}
+        <input id="inputUrl" class="${css.input}" type="text"/>
+      `,
       confirmButtonText: 'import',
       confirmCallback: () => importByUrl()
     })
@@ -30,11 +34,12 @@ const ButtonsGroup = ({getButtonStyle, exportHref}) => {
     // Here I needed to do a little DOM manipulation because SWAL does not support HTM(don't confuse with HTML) elements
     const inputFile = document.getElementById('inputFile')
     const file = inputFile.files[0]
+    // eslint-disable-next-line
     const reader = new FileReader()
 
     reader.onload = (e) => {
       console.log(e.target.result)
-      updatePlayList(JSON.parse(e.target.result))
+      setPlayList(JSON.parse(e.target.result))
     }
     reader.readAsText(file)
   }
@@ -42,7 +47,10 @@ const ButtonsGroup = ({getButtonStyle, exportHref}) => {
   const openImportJSONPopUp = () => {
     openPopup({
       title: '<strong>Import playlist</strong>',
-      html: `<input id="inputFile" class="${css.inputFile}" type="file"/>`,
+      html: `
+        ${modalWarningMessage}
+        <input id="inputFile" class="${css.inputFile}" type="file"/>
+      `,
       confirmButtonText: 'import',
       confirmCallback: () => uploadJSON()
     })

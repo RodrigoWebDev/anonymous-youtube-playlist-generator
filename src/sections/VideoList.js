@@ -1,22 +1,13 @@
 import { h } from 'preact'
 import htm from 'htm'
-import {css} from "../utils/cssClasses"
+import { css } from '../utils/cssClasses'
 import Times from '../components/Icons/Times'
 import { dangerColor } from '../utils/colors'
-import TrashCan from '../Icons/TrashCan'
+import TrashCan from '../components/Icons/TrashCan'
 
 const html = htm.bind(h)
 
-const VideosList = ({playList, setPlayList}) => {
-  const setLocalStoragePlayList = (newPlayList) => {
-    window.localStorage.setItem('playList', JSON.stringify(newPlayList))
-  }
-  
-  const updatePlayList = (newPlayList) => {
-    setPlayList(newPlayList)
-    setLocalStoragePlayList(newPlayList)
-  }
-
+const VideosList = ({ playList, updatePlayList, colorTheme, openPopup }) => {
   const removeVideo = (url) => {
     const filteredPlayList = playList.filter(item => item.url !== url)
     updatePlayList(filteredPlayList)
@@ -34,7 +25,7 @@ const VideosList = ({playList, setPlayList}) => {
       confirmButtonColor: dangerColor,
       confirmCallback: () => clearPlaylist()
     })
-  } 
+  }
 
   return html`
     <ul class="max-w-2xl mt-4">

@@ -1,12 +1,11 @@
 import { h } from 'preact'
 import htm from 'htm'
-import {css} from '../utils/cssClasses'
+import { css } from '../utils/cssClasses'
 
 const html = htm.bind(h)
 const basePlayListURL = 'http://www.youtube.com/watch_videos?video_ids='
 
-const GoToPlaylist = ({playList}) => {
-
+const GoToPlaylist = ({ playList }) => {
   const getVideoID = (url) => url.split('v=')[1]
 
   const generatePlayListUrl = ({ playList, baseURL }) => {
