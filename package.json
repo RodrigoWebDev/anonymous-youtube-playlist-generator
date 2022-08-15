@@ -8,12 +8,15 @@
     "start": "parcel src/index.html --open",
     "start-no-cache": "parcel src/index.html --no-cache --open",
     "build": "parcel build src/index.html",
-    "lint": "standard --fix"
+    "lint": "standard --fix",
+    "test:open": "cypress open",
+    "test": "cypress run"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.7",
     "buffer": "^6.0.3",
     "crypto-browserify": "^3.12.0",
+    "cypress": "^10.4.0",
     "events": "^3.3.0",
     "os-browserify": "^0.3.0",
     "parcel": "^2.5.0",

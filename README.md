@@ -27,6 +27,7 @@ Before contributing, please read the [contribution guide](https://github.com/Rod
 - **Run server**: `npm start`
 - **Build for production**: `npm run build`
 - **Format code**: `npm run format-code`
+- **Run E2E tests**: `npm run test` or `npm run test:open`
 
 ## Chat with us on discord
 
