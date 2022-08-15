@@ -76,8 +76,13 @@ const App = () => {
     return 'data:application/json;charset=utf-8,' + encodeURIComponent(dataStr)
   }
 
-  const handleChangeInput = (e, setState) => {
-    setState(e.target.value)
+  const handleChangeName = (e) => {
+    setVideoName(e.target.value)
+
+  }
+
+  const handleChangeUrl = (e) => {
+    setVideoUrl(e.target.value)
   }
 
   const toggleTheme = () => {
@@ -90,7 +95,12 @@ const App = () => {
 
   useEffect(() => {
     setExportHref(getExportHrefValue(playList))
+    console.log({playList})
   }, [playList])
+
+  useEffect(() => {
+    console.log({videoName})
+  }, [videoName])
 
   return html`
     <${Header} />
@@ -107,7 +117,8 @@ const App = () => {
         videoName=${videoName}
         setVideoName=${setVideoName}
         setVideoUrl=${setVideoUrl}
-        handleChangeInput=${handleChangeInput}
+        handleChangeName=${handleChangeName}
+        handleChangeUrl=${handleChangeUrl}
       />
 
       <${GoToPlaylist} playList=${playList} />

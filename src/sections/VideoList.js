@@ -32,9 +32,9 @@ const VideosList = ({ playList, updatePlayList, openPopup }) => {
     <ul class="max-w-2xl mt-4">
       ${playList.map(({ url, name }) => (
         html`
-          <li key=${url}>
+          <li data-testid="videoLink" key=${url}>
             <div class="${css.alert} flex justify-between" role="alert">
-              <a href=${url} target="_blank">${name || url}</a>
+              <a href=${url} target="_blank">${name}</a>
               <!-- TO DO - w-3 class need do be inside the component -->
               <${Times}
                 customClass="w-3 mr-3 opacity-50 cursor-pointer ml-2 dark:fill-white" 
@@ -50,16 +50,6 @@ const VideosList = ({ playList, updatePlayList, openPopup }) => {
     </ul>
 
     ${playList.length > 0 && html`
-      <!-- <button
-        class="${colorTheme === 'light' ? `${css.dangerButton} fill-white` : `${css.outlineDangerButton} fill-red-600 hover:fill-white`} cursor-pointer flex items-center content-evenly"
-        id="generated-url-div"
-        onClick=${() => openDeletePlaylistPopUp()}
-      >
-          TO DO - w-3 and fill-white class neet do be inside the component
-        <${TrashCan} customClass="w-3 mr-2" fill="inherit" />
-        Delete playlist
-      </button> -->
-
       <${Button}
         customClass="fill-white cursor-pointer flex items-center content-evenly"
         id="generated-url-div"
