@@ -37,6 +37,7 @@ const VideosList = ({ playList, updatePlayList, openPopup }) => {
               <a href=${url} target="_blank">${name}</a>
               <!-- TO DO - w-3 class need do be inside the component -->
               <${Times}
+                id="removeVideoIcon"
                 customClass="w-3 mr-3 opacity-50 cursor-pointer ml-2 dark:fill-white" 
                 fill="black"
                 onClick=${() => {
@@ -51,8 +52,8 @@ const VideosList = ({ playList, updatePlayList, openPopup }) => {
 
     ${playList.length > 0 && html`
       <${Button}
+        id="deleteEntirePlaylist"
         customClass="fill-white cursor-pointer flex items-center content-evenly"
-        id="generated-url-div"
         onClick=${() => openDeletePlaylistPopUp()}   
       >
         <${TrashCan} customClass="w-3 mr-2" fill="inherit" />

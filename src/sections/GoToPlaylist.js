@@ -17,6 +17,7 @@ const GoToPlaylist = ({ playList }) => {
     ${playList.length > 0 && html`
       <div id="GoToPlaylist">
         <a 
+          id="goToPlaylistButton"
           class=${css.outlineButton}
           href=${
             generatePlayListUrl({

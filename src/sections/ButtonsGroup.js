@@ -39,7 +39,6 @@ const ButtonsGroup = ({ exportHref, openPopup, setPlayList }) => {
     const reader = new FileReader()
 
     reader.onload = (e) => {
-      console.log(e.target.result)
       setPlayList(JSON.parse(e.target.result))
     }
     reader.readAsText(file)
@@ -50,7 +49,7 @@ const ButtonsGroup = ({ exportHref, openPopup, setPlayList }) => {
       title: '<strong>Import playlist</strong>',
       html: `
         ${modalWarningMessage}
-        <input id="inputFile" class="${css.inputFile}" type="file"/>
+        <input id="inputImportJson" id="inputFile" class="${css.inputFile}" type="file"/>
       `,
       confirmButtonText: 'import',
       confirmCallback: () => uploadJSON()
@@ -68,6 +67,7 @@ const ButtonsGroup = ({ exportHref, openPopup, setPlayList }) => {
       <//>
 
       <${Button} 
+        id="importJSONButton"
         customClass="mr-2"
         onClick=${() => openImportJSONPopUp()}
       >

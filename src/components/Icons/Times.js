@@ -5,8 +5,9 @@ import Svg from './Svg'
 
 const html = htm.bind(h)
 
-const Times = ({ customClass, fill, width, onClick }) => html`
+const Times = ({ customClass, fill, width, onClick, id }) => html`
   <${Svg} 
+    id=${id}
     customClass=${customClass} 
     fill=${fill} 
     onClick=${onClick}

@@ -95,12 +95,7 @@ const App = () => {
 
   useEffect(() => {
     setExportHref(getExportHrefValue(playList))
-    console.log({playList})
   }, [playList])
-
-  useEffect(() => {
-    console.log({videoName})
-  }, [videoName])
 
   return html`
     <${Header} />
